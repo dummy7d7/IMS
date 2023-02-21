@@ -52,7 +52,7 @@ public class UserController {
 	public ResponseEntity<String> deleteUser(@PathVariable("id") Integer id)
 	{
 		userService.deleteUser(id);
-
+ 
 		return new ResponseEntity<>("User with id " + id + " has been deleted successfully.", HttpStatus.OK);
 	}
 
