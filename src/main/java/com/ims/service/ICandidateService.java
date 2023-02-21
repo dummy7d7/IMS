@@ -6,7 +6,7 @@ import com.ims.model.Candidate;
 
 public interface ICandidateService {
 
-	void saveCandidate(Candidate candidate);
+	Candidate saveCandidate(Candidate candidate);
 	Candidate save(Candidate candidate);
 	
 	List<Candidate> viewCandidateList();

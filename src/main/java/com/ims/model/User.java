@@ -57,9 +57,9 @@ public class User
 	private UserDetails userDetails;
 	
 //	@JoinColumn(name = "candidateId")
-	@OneToMany(mappedBy = "user")
-	@LazyCollection(LazyCollectionOption.FALSE)
-	private List<Candidate> candidate;
+//	@OneToMany(mappedBy = "user")
+//	@LazyCollection(LazyCollectionOption.FALSE)
+//	private List<Candidate> candidate;
 
 //	@Override
 //	public String toString() {

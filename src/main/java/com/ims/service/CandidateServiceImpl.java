@@ -20,7 +20,7 @@ public class CandidateServiceImpl implements ICandidateService {
 	private ICandidateDao iCandidateDao;
 
 	@Override
-	public void saveCandidate(Candidate candidate) {
+	public Candidate saveCandidate(Candidate candidate) {
 
 		if (!iCandidateDao.existsById(candidate.getCandidateId())) 
 		{
@@ -37,8 +37,9 @@ public class CandidateServiceImpl implements ICandidateService {
 			Candidate can=iCandidateDao.findById(candidate.getCandidateId()).orElseThrow(null);
 			candidate.setStatus(can.getStatus());
 		}
-		iCandidateDao.save(candidate);
+		Candidate candidateAfterSave=iCandidateDao.save(candidate);
 		log.info("new candidate added successfully");
+		return candidateAfterSave;
 	}
 
 	@Override
