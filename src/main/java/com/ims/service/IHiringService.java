@@ -10,7 +10,7 @@ public interface IHiringService {
 
 	List<Hiring> viewHiringList();
 
-	Hiring updateHiring(Integer hiringId);
+	Hiring findByHiringId(Integer hiringId);
 
 	void deleteHiring(Integer hiringId);
 

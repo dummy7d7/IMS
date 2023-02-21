@@ -31,7 +31,7 @@ public class HiringServiceImpl implements IHiringService{
 	}
 
 	@Override
-	public Hiring updateHiring(Integer hiringId) {
+	public Hiring findByHiringId(Integer hiringId) {
 		log.info("Hiring with hiringId "+hiringId +" updated");
 		return iHiringDao.findById(hiringId).get();
 	}

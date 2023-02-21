@@ -56,7 +56,7 @@ public class ScheduleServiceImpl implements IScheduleService {
 	}
 
 	@Override
-	public Schedule updateSchedule(Integer scheduleId)
+	public Schedule findByScheduleId(Integer scheduleId)
 	{
 		Schedule schedule= iScheduleDao.findById(scheduleId).orElseThrow(null);
 		log.info("Schedule with scheduleId "+scheduleId +" updated");

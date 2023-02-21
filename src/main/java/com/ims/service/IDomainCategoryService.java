@@ -11,7 +11,7 @@ public interface IDomainCategoryService
 
 	List<DomainCategory> viewDomainCategoryList();
 
-	DomainCategory updateDomainCategory(Integer domSubCatId);
+	DomainCategory findByDomainCategoryId(Integer domSubCatId);
 
 	void deleteDomainCategory(Integer domSubCatId);
 }

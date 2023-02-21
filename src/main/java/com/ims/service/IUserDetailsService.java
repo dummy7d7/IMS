@@ -10,7 +10,7 @@ public interface IUserDetailsService {
 
 	List<UserDetails> viewUserDetailsList();
 
-	UserDetails updateUserDetails(Integer userDetailsId);
+	UserDetails findByUserDetailsId(Integer userDetailsId);
 
 	void deleteUserDetails(Integer userDetailsId);
 	

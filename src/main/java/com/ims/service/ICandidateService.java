@@ -11,7 +11,7 @@ public interface ICandidateService {
 	
 	List<Candidate> viewCandidateList();
 
-	Candidate updateCandidate(Integer candidateId);
+	Candidate findCandidateById(Integer candidateId);
 
 	void deleteCandidate(Integer candidateId);
 	

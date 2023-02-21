@@ -28,7 +28,7 @@ public class UserDetailsServiceImpl implements IUserDetailsService {
 	}
 
 	@Override
-	public UserDetails updateUserDetails(Integer userDetailsId) {
+	public UserDetails findByUserDetailsId(Integer userDetailsId) {
 		log.info("UserDetails with userDetailsId: "+userDetailsId +" updated");
 		return iUserDetailsDao.findById(userDetailsId).get();
 	}

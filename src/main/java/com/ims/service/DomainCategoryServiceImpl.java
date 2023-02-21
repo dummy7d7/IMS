@@ -30,7 +30,7 @@ public class DomainCategoryServiceImpl implements IDomainCategoryService
 	}
 
 	@Override
-	public DomainCategory updateDomainCategory(Integer domSubCatId) {
+	public DomainCategory findByDomainCategoryId(Integer domSubCatId) {
 		log.info("DomainCategory with domSubCatId "+domSubCatId +" updated");
 		return iDomainCategoryDao.findById(domSubCatId).get();
 	}

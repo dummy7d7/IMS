@@ -15,7 +15,7 @@ public interface IUserService {
 
 	List<User> viewUserList();
 
-	User updateUser(Integer userId);
+	User findByUserId(Integer userId);
 
 	void deleteUser(Integer userId);
 

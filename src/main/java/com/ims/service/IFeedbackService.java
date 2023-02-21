@@ -11,19 +11,18 @@ public interface IFeedbackService {
 
 	Object viewFeedbackList();
 
-	Feedback updateFeedback(Integer feedbackId);
+	Feedback findByFeedbackId(Integer feedbackId);
 
 	void deleteFeedback(Integer feedbackId);
-	
-	
-Feedback getDetailsById(Integer id);
-	
+
+	Feedback getDetailsById(Integer id);
+
 	List<Feedback> getAllFeedback();
-	
+
 	boolean existsFeedbackByCandidate(Candidate candidate);
-	
+
 	Feedback findByCandidate(Candidate candidate);
-	
-	Feedback updateInterviewerFbStatus(Integer id,String status);
-	
+
+	Feedback updateInterviewerFbStatus(Integer id, String status);
+
 }

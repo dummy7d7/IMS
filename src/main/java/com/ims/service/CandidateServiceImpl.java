@@ -54,7 +54,7 @@ public class CandidateServiceImpl implements ICandidateService {
 	}
 
 	@Override
-	public Candidate updateCandidate(Integer candidateId) {
+	public Candidate findCandidateById(Integer candidateId) {
 		return iCandidateDao.findById(candidateId).get();
 	}
 

@@ -29,7 +29,7 @@ public class DomainServiceImpl implements IDomainService {
 	}
 
 	@Override
-	public Domain updateDomain(Integer domainId) {
+	public Domain findByDomainId(Integer domainId) {
 		log.info("Domain with domainId "+domainId +" updated");
 		return iDomainDao.findById(domainId).get();
 	}

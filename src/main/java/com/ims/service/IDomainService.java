@@ -10,7 +10,7 @@ public interface IDomainService {
 
 	List<Domain> viewDomainList();
 
-	Domain updateDomain(Integer domainId);
+	Domain findByDomainId(Integer domainId);
 
 	void deleteDomain(Integer domainId);
 }

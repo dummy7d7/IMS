@@ -31,7 +31,7 @@ public class FeedbackServiceImpl implements IFeedbackService {
 	}
 
 	@Override
-	public Feedback updateFeedback(Integer feedbackId) {
+	public Feedback findByFeedbackId(Integer feedbackId) {
 		log.info("Feedback with feedbackId "+feedbackId +" updated");
 		return iFeedbackDao.findById(feedbackId).get();
 	}

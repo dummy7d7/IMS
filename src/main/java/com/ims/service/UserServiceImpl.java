@@ -50,7 +50,7 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public User updateUser(Integer userId) {
+	public User findByUserId(Integer userId) {
 		log.info("User with userId: "+userId +" updated");
 		return iUserDao.findById(userId).get();
 	}

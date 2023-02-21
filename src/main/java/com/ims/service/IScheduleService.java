@@ -11,7 +11,7 @@ public interface IScheduleService {
 
 	List<Schedule> viewScheduleList();
 
-	Schedule updateSchedule(Integer scheduleId);
+	Schedule findByScheduleId(Integer scheduleId);
 
 	void deleteSchedule(Integer scheduleId);
 	
