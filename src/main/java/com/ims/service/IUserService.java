@@ -2,8 +2,11 @@ package com.ims.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.ims.model.User;
 
+@Service
 public interface IUserService {
 	User findById(int id);
 
@@ -11,7 +14,7 @@ public interface IUserService {
 
 	boolean existsUserByUsernameAndPassword(String name, String password);
 
-	void saveUser(User user);
+	User saveUser(User user);
 
 	List<User> viewUserList();
 

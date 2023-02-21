@@ -38,9 +38,10 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public void saveUser(User user) {
-		iUserDao.save(user);
+	public User saveUser(User user) {
+		
 		log.info("new User added successfully");
+		return iUserDao.save(user);
 	}
 
 	@Override
