@@ -17,9 +17,10 @@ public class DomainServiceImpl implements IDomainService {
 	private IDomainDao iDomainDao;
 	
 	@Override
-	public void saveDomain(Domain domain) {
+	public Domain saveDomain(Domain domain) {
 		log.info("new Domain added successfully");
-		iDomainDao.save(domain);
+		Domain domain1 = iDomainDao.save(domain);
+		return domain1;
 	}
 
 	@Override

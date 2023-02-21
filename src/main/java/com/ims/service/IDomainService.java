@@ -6,7 +6,7 @@ import com.ims.model.Domain;
 
 public interface IDomainService {
 
-	void saveDomain(Domain domain);
+	Domain saveDomain(Domain domain);
 
 	List<Domain> viewDomainList();
 
