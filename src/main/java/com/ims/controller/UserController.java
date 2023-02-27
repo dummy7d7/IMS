@@ -43,7 +43,6 @@ public class UserController {
 	@GetMapping("user/{id}")
 	public ResponseEntity<User> getUserById(@PathVariable("id") Integer id) 
 	{
-		System.err.println("HIII");
 		User user = userService.findById(id);
 		return new ResponseEntity<>(user, HttpStatus.OK);
 	}

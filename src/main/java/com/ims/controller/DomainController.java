@@ -44,7 +44,6 @@ public class DomainController {
 	@GetMapping("/domain/{id}")
 	public ResponseEntity<Domain> getDomain(@PathVariable("id") Integer id)
 	{
-		System.err.println("HIII");
 		Domain domain = domainService.findByDomainId(id);
 		return new ResponseEntity<>(domain, HttpStatus.OK);
 	}
