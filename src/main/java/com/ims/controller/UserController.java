@@ -28,7 +28,8 @@ public class UserController {
 	@PostMapping("user")
 	public ResponseEntity<User> createUser(@RequestBody User userRequest) 
 	{
-
+		userRequest.setEnabled(true);
+//		System.err.println(userRequest);
 		User user = userService.saveUser(userRequest);
 		return new ResponseEntity<>(user, HttpStatus.CREATED);
 	}
@@ -43,6 +44,7 @@ public class UserController {
 	@GetMapping("user/{id}")
 	public ResponseEntity<User> getUserById(@PathVariable("id") Integer id) 
 	{
+		System.err.println("----");
 		User user = userService.findById(id);
 		return new ResponseEntity<>(user, HttpStatus.OK);
 	}

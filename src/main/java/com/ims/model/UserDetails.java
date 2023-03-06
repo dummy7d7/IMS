@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
 @Getter
 @Setter
 @ToString
@@ -23,13 +22,5 @@ public class UserDetails
 	@Id
 	@GeneratedValue
 	private Integer userDetailsId;
-	@Email(message = "Invalid Email address")
-	private String personalMailId;
-	@NotNull(message = "Mobile Number Can't be empty")
-	@Min(value =1,message = "Mobile number should be +ve")
-	private Long mobileNumber;
-	@NotBlank(message = "Designation can't be empty")
-	private String designation;
-	@NotBlank(message = "Experties can't be empty")
-	private String experties;
+
 }

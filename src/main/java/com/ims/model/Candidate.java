@@ -21,6 +21,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -67,6 +69,7 @@ public class Candidate
 	//@NotNull(message = "Candidate's resume cannot be empty.")
 
 	@Lob
+	@JsonIgnore
 	private byte[] resume;
 	private String resumeName;
 	private String status;

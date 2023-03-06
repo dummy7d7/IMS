@@ -13,7 +13,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.LazyCollection;
@@ -28,7 +30,7 @@ import lombok.ToString;
 @Entity(name = "users")
 @Getter
 @Setter
-//@ToString
+@ToString
 @NoArgsConstructor
 public class User 
 {
@@ -51,10 +53,21 @@ public class User
 	@Column(unique = true)
 	private String email;
 	
-	@Valid
-	@JoinColumn(name = "userDetailsId")
-	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	private UserDetails userDetails;
+	@Email(message = "Invalid Email address")
+	private String personalMailId;
+	
+	@NotNull(message = "Mobile Number Can't be empty")
+	@Min(value =1,message = "Mobile number should be +ve")
+	private Long mobileNumber;
+	@NotBlank(message = "Designation can't be empty")
+	private String designation;
+	@NotBlank(message = "Experties can't be empty")
+	private String experties;
+//	
+//	@Valid
+//	@JoinColumn(name = "userDetailsId")
+//	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//	private UserDetails userDetails;
 	
 //	@JoinColumn(name = "candidateId")
 //	@OneToMany(mappedBy = "user")
