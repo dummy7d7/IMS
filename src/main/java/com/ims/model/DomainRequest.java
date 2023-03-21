@@ -15,7 +15,7 @@ public class DomainRequest
 	private Integer domainId;
 	private String domainName;
 	
-	private String[] domainCategory; 
+	private String[] domainCategory;
 	private Integer[] domCatIds;
 
 }
