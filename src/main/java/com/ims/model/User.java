@@ -1,26 +1,14 @@
 package com.ims.model;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-import org.hibernate.type.TrueFalseType;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,7 +26,7 @@ public class User
 	@GeneratedValue
 	private Integer userId;
 	@NotBlank(message = "User's name Should n't be empty.")
-	@Pattern(regexp = "^[A-Za-z]{5,15}$", 
+	@Pattern(regexp = "^[A-Za-z]{5,15}$", 	
 	message = "User's name Should Be  minimum 5 characters and maximum 15 characters")
 	private String username;
 	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,15}$",

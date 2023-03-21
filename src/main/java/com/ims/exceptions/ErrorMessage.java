@@ -1,5 +1,4 @@
 package com.ims.exceptions;
-
 import java.util.Date;
 
 public class ErrorMessage {

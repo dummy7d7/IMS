@@ -1,5 +1,6 @@
 package com.ims.model;
 
+import java.io.Serializable;
 import java.sql.Blob;
 
 import javax.persistence.CascadeType;
@@ -11,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -20,6 +22,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -33,7 +36,7 @@ import lombok.ToString;
 @Setter
 //@ToString
 @NoArgsConstructor
-public class Candidate 
+public class Candidate implements Serializable
 {
 	@Id
 	@GeneratedValue
@@ -90,6 +93,9 @@ public class Candidate
 	@JoinColumn(name = "domainId")
 	@OneToOne
 	private Domain domain;
+	
+	@Transient
+	private transient MultipartFile file;
 
 	@Override
 	public String toString() {
