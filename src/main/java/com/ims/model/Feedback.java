@@ -1,8 +1,8 @@
 package com.ims.model;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -48,7 +48,7 @@ public class Feedback
 	@MapKeyColumn(name = "subName")
 	@Column(name = "subRating")
 	@CollectionTable(name = "subDomRatings")
-	private Map<String, Integer> subDomRatings;
+	private Map<String, Integer> subDomRatings =new HashMap<String, Integer>();
 	
 	
 	

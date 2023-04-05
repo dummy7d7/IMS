@@ -1,6 +1,7 @@
 package com.ims.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ims.model.Feedback;
-import com.ims.model.Schedule;
 import com.ims.service.IFeedbackService;
 
 @RestController
@@ -26,8 +29,16 @@ public class FeedBackController {
 	@Autowired
 	private IFeedbackService feedbackService;
 
+	@SuppressWarnings("unchecked")
 	@PostMapping("/feedback")
-	public ResponseEntity<Feedback> addFeedback(@RequestBody Feedback feedback) {
+	public ResponseEntity<Feedback> addFeedback(@RequestBody Feedback feedback) throws JsonMappingException, JsonProcessingException 
+	{
+		ObjectMapper objectMapper=new ObjectMapper();
+		Map<String,Integer> mapOfDomain=objectMapper.readValue(feedback.getDomainRatings(), Map.class);
+		System.out.println("object Mapper"+mapOfDomain);
+		feedback.setSubDomRatings(mapOfDomain);
+		feedback.setDomain(feedback.getCandidate().getDomain());
+		System.out.println("Feedback after setting"+feedback);
 		Feedback feedbackAfterSave = feedbackService.saveFeedback(feedback);
 		return new ResponseEntity<Feedback>(feedbackAfterSave, HttpStatus.CREATED);
 	}
@@ -56,3 +67,4 @@ public class FeedBackController {
 		return new ResponseEntity<String>("Feedback with id:"+id+" deleted",HttpStatus.OK);
 	}
 }
+	
