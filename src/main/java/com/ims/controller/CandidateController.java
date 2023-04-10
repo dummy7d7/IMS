@@ -45,8 +45,8 @@ public class CandidateController
 	{
 //		System.err.println(candidate.getDomain());
 //		candidate.setDomain(null);
-		User user= userService.findById(15);
-		candidate.setUser(user);
+//		User user= userService.findById(15);
+		candidate.setUser(null);
 		if(!(candidate.getFile()==null))
 		{
 			candidate.setResume(candidate.getFile().getBytes());

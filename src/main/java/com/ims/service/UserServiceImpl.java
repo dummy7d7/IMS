@@ -46,7 +46,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public List<User> viewUserList() {
-		log.info("find all Users from the database");
+		log.info("find all User from the database");
 		return iUserDao.findAll();
 	}
 
