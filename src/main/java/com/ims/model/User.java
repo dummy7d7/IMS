@@ -25,7 +25,7 @@ public class User implements UserDetails {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Integer id;
 
 	@Column(name = "USER_NAME", unique = true)
 	private String userName;
@@ -66,7 +66,7 @@ public class User implements UserDetails {
 	private String designation;
 
 	
-	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
 	@JoinTable(name = "USER_AUTHORITY", joinColumns = @JoinColumn(referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(referencedColumnName ="id"))
 	private List<Authority> authorities;
 
@@ -112,12 +112,38 @@ public class User implements UserDetails {
 		return this.enabled;
 	}
 
-	public long getId() {
+	
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getPersonalMailId() {
+		return personalMailId;
+	}
+
+	public void setPersonalMailId(String personalMailId) {
+		this.personalMailId = personalMailId;
+	}
+
+	public Long getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(Long mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
+	public String getDesignation() {
+		return designation;
+	}
+
+	public void setDesignation(String designation) {
+		this.designation = designation;
 	}
 
 	public String getUserName() {
@@ -186,6 +212,14 @@ public class User implements UserDetails {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", userName=" + userName + ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", email=" + email + ", personalMailId=" + personalMailId
+				+ ", mobileNumber=" + mobileNumber + ", designation=" + designation + ", authorities=" + authorities
+				+ "]";
 	}
 	
 	

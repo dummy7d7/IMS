@@ -6,7 +6,7 @@ import com.ims.model.User;
 
 
 
-public interface UserDetailsRepository extends JpaRepository<User, Long> {
+public interface UserDetailsRepository extends JpaRepository<User, Integer> {
 
 	User findByUserName(String userName);
 	
