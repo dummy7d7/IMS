@@ -28,7 +28,7 @@ public class CandidateServiceImpl implements ICandidateService {
 			System.out.println(candidate.getCandidateId());
 			if (can.getStatus() == null) 
 			{
-				System.err.println("-------Comming Inside---------");
+//				System.err.println("-------Comming Inside---------");
 				candidate.setStatus("ResumeShortlisted");
 			}
 		}
@@ -40,6 +40,13 @@ public class CandidateServiceImpl implements ICandidateService {
 		Candidate candidateAfterSave=iCandidateDao.save(candidate);
 		log.info("new candidate added successfully");
 		return candidateAfterSave;
+	}
+
+	@Override
+	public List<Candidate> findAllCandidateById(List<Integer> candidateIds) {
+		// TODO Auto-generated method stub
+		List<Candidate> candiList=iCandidateDao.findAllById(candidateIds);
+		return candiList;
 	}
 
 	@Override

@@ -38,7 +38,7 @@ public class ControllerExceptionHandler {
   @ExceptionHandler(ConstraintViolationException.class)
   public ResponseEntity<Map<String, List<String>>> handleValidationErrors(ConstraintViolationException ex)
   {
-	  System.err.println(ex.getConstraintViolations());
+//	  System.err.println(ex.getConstraintViolations());
       List<String> errors = ex.getConstraintViolations()
               .stream().map(t ->t.getMessage() ).collect(Collectors.toList());
       return new ResponseEntity<>(getErrorsMap(errors), new HttpHeaders(), HttpStatus.BAD_REQUEST);

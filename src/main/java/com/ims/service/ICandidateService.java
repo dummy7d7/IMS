@@ -20,4 +20,6 @@ public interface ICandidateService {
 	Candidate findResumeCandidate(Integer candidateId);
 	
 	List<Candidate> bulkSaveCandidate(List<Candidate> candidateList);
+	
+	List<Candidate> findAllCandidateById(List<Integer> candidateIds);
 }

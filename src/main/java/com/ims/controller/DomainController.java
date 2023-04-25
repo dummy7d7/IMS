@@ -40,8 +40,8 @@ public class DomainController {
 	@PostMapping("/domain")
 	public ResponseEntity<Domain> createDomain(@Valid  @RequestBody DomainRequest domainRequest) 
 	{ 
-		System.err.println(domainRequest.getDomainName());
-		System.err.println(domainRequest.toString());
+//		System.err.println(domainRequest.getDomainName());
+//		System.err.println(domainRequest.toString());
 		
 		Domain domain=new Domain();
 		List<DomainCategory> arr = new ArrayList<DomainCategory>();
@@ -58,7 +58,7 @@ public class DomainController {
 			arr.add(dom);
 		}
 		domain.setDomainCategory(arr);
-		System.out.println(arr);
+//		System.out.println(arr);
 		domain.setDomainName(domainRequest.getDomainName());
 		Domain dom=domainService.saveDomain(domain);
 		return new ResponseEntity<>(dom, HttpStatus.CREATED);
@@ -93,8 +93,8 @@ public class DomainController {
 		domRq.setDomCatIds(a);
 		domRq.setDomainCategory(arr);
 		
-		System.out.println();
-		System.out.println("=>  "+domain);
+//		System.out.println();
+//		System.out.println("=>  "+domain);
 		return new ResponseEntity<>(domRq, HttpStatus.OK);
 	}
 
@@ -108,7 +108,7 @@ public class DomainController {
 	@PutMapping("/domain/{id}")
 	public ResponseEntity<DomainRequest> updateDomain(@PathVariable("id") Integer id, @RequestBody DomainRequest domainRequest) 
 	{
-		System.err.println(domainRequest);
+//		System.err.println(domainRequest);
 		Domain domain=new Domain();
 		List<DomainCategory> arr = new ArrayList<DomainCategory>();
 
@@ -154,7 +154,7 @@ public class DomainController {
 		domain.setDomainName(domainRequest.getDomainName());
 		domain.setDomainId(domainRequest.getDomainId());
 		Domain dom=domainService.saveDomain(domain);
-		System.err.println(dom);
+//		System.err.println(dom);
 		
 		return new ResponseEntity<>(domainRequest, HttpStatus.OK);
 	}

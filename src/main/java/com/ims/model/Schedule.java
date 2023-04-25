@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -53,4 +54,10 @@ public class Schedule
 //	@JoinColumn(name = "candidateId")
 	@ManyToMany(cascade = { CascadeType.PERSIST,CascadeType.MERGE})
 	private List<Candidate> candidate;
+	
+	@Transient
+	private transient List<Integer> candidateIds;
+	
+	@Transient
+	private transient Integer userId;
 }
