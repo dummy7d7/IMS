@@ -7,8 +7,8 @@
         </Console>
 
         <RollingFile name="RollingFile"
-            fileName="./logs/spring-boot-logger-log4j2.log"
-            filePattern="./logs/$${date:yyyy-MM}/spring-boot-logger-log4j2-%d{-dd-MMMM-yyyy}-%i.log.gz">
+            fileName="./ims/logs/spring-boot-ims-logger-log4j2.log"
+            filePattern="./logs/$${date:yyyy-MM}/spring-boot-ims-logger-log4j2-%d{-dd-MMMM-yyyy}-%i.log.gz">
             <PatternLayout>
                 <pattern>%d %p %C{1.} [%t] %m%n</pattern>
             </PatternLayout>
@@ -17,13 +17,12 @@
                     10 MegaBytes -->
                 <OnStartupTriggeringPolicy />
                 <SizeBasedTriggeringPolicy
-                    size="1000 KB" />
+                    size="100KB" />
                 <TimeBasedTriggeringPolicy />
             </Policies>
-        </RollingFile>
+        </RollingFile> 
     </Appenders>
-
-    <Loggers>
+    <Loggers> 
         <!-- LOG everything at INFO level -->
         <Root level="info">
             <AppenderRef ref="Console" />
