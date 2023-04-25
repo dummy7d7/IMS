@@ -35,10 +35,10 @@ public class FeedBackController {
 	{
 		ObjectMapper objectMapper=new ObjectMapper();
 		Map<String,Integer> mapOfDomain=objectMapper.readValue(feedback.getDomainRatings(), Map.class);
-		System.out.println("object Mapper"+mapOfDomain);
+//		System.out.println("object Mapper"+mapOfDomain);
 		feedback.setSubDomRatings(mapOfDomain);
 		feedback.setDomain(feedback.getCandidate().getDomain());
-		System.out.println("Feedback after setting"+feedback);
+//		System.out.println("Feedback after setting"+feedback);
 		Feedback feedbackAfterSave = feedbackService.saveFeedback(feedback);
 		return new ResponseEntity<Feedback>(feedbackAfterSave, HttpStatus.CREATED);
 	}

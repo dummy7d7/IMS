@@ -32,7 +32,7 @@ public class ScheduleServiceImpl implements IScheduleService {
 		{
 			text="Your interview has been scheduled on "+s.getScheduleDate()+" at "+s.getScheduleTime()+ " and Connect through  the link given below "+"\n"+"\n"+s.getMeetingLink();
 			 to=s.getCandidate().get(0).getEmail();
-			 System.out.println(to);
+//			 System.out.println(to);
 				email.sendSimpleMessage(to, "Interview", text);
 				email.sendSimpleMessage(schedule.getUser().getEmail(), "Meeting", s.getMeetingLink());
 		}
@@ -45,7 +45,7 @@ public class ScheduleServiceImpl implements IScheduleService {
 		}
 		
 		
-		System.out.println("Mail sent");
+//		System.out.println("Mail sent");
 		return s;
 	}
 

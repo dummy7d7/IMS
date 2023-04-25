@@ -43,7 +43,7 @@ public class CandidateController {
 			candidate.setResumeName(candidate.getFile().getOriginalFilename());
 		}
 		candidate.setFile(null);
-		System.out.println(candidate);
+//		System.out.println(candidate);
 		Candidate can = candidateService.save(candidate);
 		return new ResponseEntity<>(candidate, HttpStatus.CREATED);
 	}
@@ -51,7 +51,7 @@ public class CandidateController {
 	@PostMapping("candidates/byCandidateId")
 	public ResponseEntity<List<Candidate>> getCandidatesByIds(@RequestBody List<Integer> idArray) {
 		List<Candidate> listOfCandi = candidateService.findAllCandidateById(idArray);
-		System.out.println(idArray);
+//		System.out.println(idArray);
 		return new ResponseEntity<List<Candidate>>(listOfCandi, HttpStatus.OK);
 	}
 
