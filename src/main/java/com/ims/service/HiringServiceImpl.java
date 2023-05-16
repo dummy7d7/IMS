@@ -19,20 +19,23 @@ public class HiringServiceImpl implements IHiringService{
 	private IHiringDao iHiringDao;
 	
 	@Override
-	public Hiring saveHiring(Hiring hiring) {
-		log.info("Hiring record added successfully");
-		return iHiringDao.save(hiring);
+	public Hiring saveHiring(Hiring hiring) 
+	{
+		Hiring saveHiring= iHiringDao.save(hiring);
+		log.info("Hiring "+saveHiring.getHiringId() +"added successfully");
+		return saveHiring;
 	}
 
 	@Override
 	public List<Hiring> viewHiringList() {
-		log.info("find all Hirings from the database");
+		log.info("finding all Hirings from the database");
 		return iHiringDao.findAllHiring();
 	}
 
 	@Override
-	public Hiring findByHiringId(Integer hiringId) {
-		log.info("Hiring with hiringId "+hiringId +" updated");
+	public Hiring findByHiringId(Integer hiringId) 
+	{
+		log.info("Find Hiring with hiringId: "+hiringId );
 		return iHiringDao.findById(hiringId).get();
 	}
 
@@ -40,7 +43,7 @@ public class HiringServiceImpl implements IHiringService{
 	public void deleteHiring(Integer hiringId) {
 		
 		iHiringDao.deleteById(hiringId);
-		log.info("Hiring with hiringId "+hiringId +" deleted");
+		log.info("Hiring with hiringId: "+hiringId +" isv deleted");
 	}
 
 }

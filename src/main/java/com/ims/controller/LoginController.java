@@ -1,10 +1,9 @@
 package com.ims.controller;
 
 import java.security.NoSuchAlgorithmException;
-import java.security.Principal;
 import java.security.spec.InvalidKeySpecException;
+import java.util.List;
 
-import org.apache.logging.log4j.core.util.PasswordDecryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +12,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ims.model.AuthenticationRequest;
 import com.ims.model.LoginResponse;
 import com.ims.model.User;
+import com.ims.security.BlockListCacheService;
 import com.ims.security.JWTTokenHelper;
+import com.ims.service.ICandidateService;
 import com.ims.service.IUserService;
 
 @RestController
@@ -43,9 +44,12 @@ public class LoginController {
 	
 	@Autowired
 	private IUserService userService;
+	
+	@Autowired
+	private ICandidateService canServ;
 //	
-//	@Autowired
-//	private PasswordDecryptor pass;
+	@Autowired
+	private BlockListCacheService blockListCacheService;
 
 	@PostMapping("/auth/login")
 	public ResponseEntity<?> login(@RequestBody AuthenticationRequest authenticationRequest)
@@ -63,23 +67,50 @@ public class LoginController {
 
 		LoginResponse response = new LoginResponse();
 		response.setToken(jwtToken);
+		
+		
+		user.getAuthorities().forEach(authority -> 
+		{
+//			System.err.println("Authority => " +authority.getAuthority());
+			response.setRole(authority.getAuthority());
+		});
+		response.setUser(user);
 
+//		System.err.println(response);
 		return ResponseEntity.ok(response);
 	}
 
 	@GetMapping("/auth/userinfo")
 	public ResponseEntity<?> getUserInfo() 
 	{
-		User userObj =userService.findById(4);
+		List userObj =userService.viewUserList();
 		
+		canServ.viewCandidateList().forEach(can ->
+		{
+			userObj.add(can);
+		});
 		
-		
-//		UserInfo userInfo=new UserInfo();
-//		userInfo.setFirstName(userObj.getFirstName());
-//		userInfo.setLastName(userObj.getLastName());
-//		userInfo.setRoles(userObj.getAuthorities().toArray());
-
+	
 		return new ResponseEntity<>(userObj,HttpStatus.OK);
+
+	}
+	@GetMapping("/auth/logout/{username}/{token}")
+	public ResponseEntity<?> logout(@PathVariable String username,@PathVariable String token) 
+	{
+//		 String status="OK";
+		 System.err.println("Username => "+username);
+		 System.err.println("Token => "+token);
+		
+		 blockListCacheService.addUserToBlockList(username,token);
+		 String status="";
+		 if(!blockListCacheService.isUserBlocked(username))
+		 {
+			 status="success";
+		 }
+		 else {
+			status="failure";
+		}
+		return new ResponseEntity<>(status,HttpStatus.OK);
 
 	}
 

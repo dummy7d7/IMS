@@ -9,20 +9,19 @@ import com.ims.model.User;
 import com.ims.repository.IuserDao;
 
 import lombok.extern.log4j.Log4j2;
+
 @Log4j2
 @Service
 public class UserServiceImpl implements IUserService {
-    @Autowired
-    private IuserDao iUserDao;
-    
+	@Autowired
+	private IuserDao iUserDao;
+
 	@Override
 	public User findById(int id) {
 		// TODO Auto-generated method stub
 		log.info("find User from the database with id:" + id);
 		return iUserDao.findById(id).orElseThrow(null);
 	}
-
-	
 
 	@Override
 	public User login(String userName, String password) {
@@ -33,15 +32,15 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public boolean existsUserByUsernameAndPassword(String name, String password) {
 		// TODO Auto-generated method stub
-		
+
 		return iUserDao.existsUserByEmailAndPassword(name, password);
 	}
 
 	@Override
 	public User saveUser(User user) {
-		
-		log.info("new User added successfully");
-		return iUserDao.save(user);
+		User save = iUserDao.save(user);
+		log.info("New User " + save.getId() + " added successfully");
+		return save;
 	}
 
 	@Override
@@ -52,28 +51,25 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public User findByUserId(Integer userId) {
-		log.info("User with userId: "+userId +" updated");
+		log.info("Finding User with userId: " + userId);
 		return iUserDao.findById(userId).get();
 	}
 
 	@Override
 	public void deleteUser(Integer userId) {
 		iUserDao.deleteById(userId);
-		log.info("User with userId "+userId +" deleted");
+		log.info("User with userId " + userId + " deleted");
 	}
-
 
 	@Override
 	public User findUsername(String name) {
-		log.info("find User from the database with name:" + name);
+		log.info("find User from the database with Username:" + name);
 		return iUserDao.findByEmail(name);
 	}
 
-
-
 	@Override
 	public boolean existsUserByEmail(String email) {
-		
+
 		return iUserDao.existsUserByEmail(email);
 	}
 

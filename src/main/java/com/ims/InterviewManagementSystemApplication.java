@@ -1,18 +1,18 @@
 package com.ims;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-
-import org.springframework.beans.factory.annotation.Autowired;
+//import java.util.ArrayList;
+//import java.util.List;
+//
+//import javax.annotation.PostConstruct;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
-import com.ims.model.Authority;
-import com.ims.model.User;
-import com.ims.repository.UserDetailsRepository;
+//import org.springframework.security.crypto.password.PasswordEncoder;
+//
+//import com.ims.model.Authority;
+//import com.ims.model.User;
+//import com.ims.repository.UserDetailsRepository;
 
 @SpringBootApplication
 public class InterviewManagementSystemApplication {
