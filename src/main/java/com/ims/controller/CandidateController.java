@@ -33,7 +33,7 @@ public class CandidateController {
 	private IUserService userService;
 
 	@PostMapping("/candidate")
-	public ResponseEntity<Candidate> createStudent(@ModelAttribute Candidate candidate) throws IOException {
+	public ResponseEntity<Candidate> addCandidate(@ModelAttribute Candidate candidate) throws IOException {
 //		System.err.println(candidate.getDomain());
 //		candidate.setDomain(null);
 //		User user= userService.findById(15);
