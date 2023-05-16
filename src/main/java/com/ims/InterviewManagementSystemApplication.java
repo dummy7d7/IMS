@@ -17,12 +17,12 @@ import com.ims.repository.UserDetailsRepository;
 @SpringBootApplication
 public class InterviewManagementSystemApplication {
 	
-
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-	
-	@Autowired
-	private UserDetailsRepository userDetailsRepository;
+//
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
+//	
+//	@Autowired
+//	private UserDetailsRepository userDetailsRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(InterviewManagementSystemApplication.class, args);
