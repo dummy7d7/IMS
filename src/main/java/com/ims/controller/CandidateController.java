@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ims.model.Candidate;
+import com.ims.repository.ICandidateDao;
 import com.ims.service.ICandidateService;
 import com.ims.service.IUserService;
 
@@ -28,10 +29,7 @@ import com.ims.service.IUserService;
 public class CandidateController {
 	@Autowired
 	private ICandidateService candidateService;
-
-	@Autowired
-	private IUserService userService;
-
+	
 	@PostMapping("/candidate")
 	public ResponseEntity<Candidate> addCandidate(@ModelAttribute Candidate candidate) throws IOException {
 //		System.err.println(candidate.getDomain());
@@ -45,7 +43,7 @@ public class CandidateController {
 		candidate.setFile(null);
 //		System.out.println(candidate);
 		Candidate can = candidateService.save(candidate);
-		return new ResponseEntity<>(candidate, HttpStatus.CREATED);
+		return new ResponseEntity<>(can, HttpStatus.CREATED);
 	}
 
 	@PostMapping("candidates/byCandidateId")
@@ -87,13 +85,16 @@ public class CandidateController {
 		return new ResponseEntity<>(candidate, HttpStatus.OK);
 	}
 	
-	@PutMapping("/candidatestatus/{id}")
-	public ResponseEntity<String> updateCandidateStatus(@PathVariable("id") Integer id)
+	@PutMapping("/candidatestatus/{id}/{status}")
+	public ResponseEntity<Candidate> updateCandidateStatus(@PathVariable("id") Integer id,@PathVariable("status") String status)
 	{
-//		Candidate updtCan =candidateService.findCandidateById(id);
-////		updtCan.setStatus(status);
-//		System.err.println(updtCan);
-		Candidate candidate=null;//candidateService.save(updtCan);
-		return new ResponseEntity<>("Working",HttpStatus.OK);
+		
+		Candidate updtCan =candidateService.findCandidateById(id);
+		updtCan.setStatus(status);
+//		System.err.println(updtCan.getStatus());
+//		System.err.println("ID => "+id);
+		Candidate candidate=candidateService.updateCandidateStatus(updtCan);
+//		System.err.println("Status => "+ candidate.getStatus());
+		return new ResponseEntity<>(candidate,HttpStatus.OK);
 	}
 }

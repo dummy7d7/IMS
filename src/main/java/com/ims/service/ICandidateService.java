@@ -15,7 +15,7 @@ public interface ICandidateService {
 
 	void deleteCandidate(Integer candidateId);
 	
-	Candidate updateCandidateStatus(Integer id,String status);
+	Candidate updateCandidateStatus(Candidate candidate);
 
 	Candidate findResumeCandidate(Integer candidateId);
 	
