@@ -1,6 +1,9 @@
 package com.ims.controller;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ims.model.Candidate;
 import com.ims.model.Schedule;
 import com.ims.model.User;
-import com.ims.repository.ICandidateDao;
 import com.ims.service.ICandidateService;
 import com.ims.service.IScheduleService;
 import com.ims.service.IUserService;
@@ -42,6 +44,11 @@ public class ScheduleController {
 		User user=userService.findById(scheduleRequest.getUserId());
 		List<Candidate> candidateList=candidateService.findAllCandidateById(scheduleRequest.getCandidateIds());
 		
+		candidateList.forEach(candidate -> 
+		{
+			candidate.setStatus("Pending");
+		});
+		
 		scheduleRequest.setCandidate(candidateList);
 		scheduleRequest.setUser(user);
 		
@@ -52,9 +59,14 @@ public class ScheduleController {
 	}
 
 	@GetMapping("/schedules")
-	public ResponseEntity<List<Schedule>> viewAllSchedule() {
+	public ResponseEntity<List<Schedule>> viewAllSchedule() 
+	{
+		List<Schedule> schedules = new ArrayList<>();
+		
 		List<Schedule> scheduleList = scheduleService.viewScheduleList();
-		return new ResponseEntity<>(scheduleList, HttpStatus.OK);
+		
+		schedules = scheduleList.stream().filter(p ->(p.getScheduleDate().isAfter(LocalDate.now()) || p.getScheduleDate().isEqual(LocalDate.now()))).collect(Collectors.toList());
+		return new ResponseEntity<>(schedules, HttpStatus.OK);
 	}
 
 	@GetMapping("/schedule/{id}")

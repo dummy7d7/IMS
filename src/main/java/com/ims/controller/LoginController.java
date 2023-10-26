@@ -52,7 +52,7 @@ public class LoginController {
 	private BlockListCacheService blockListCacheService;
 
 	@PostMapping("/auth/login")
-	public ResponseEntity<?> login(@RequestBody AuthenticationRequest authenticationRequest)
+	public ResponseEntity<?> login(@RequestBody AuthenticationRequest  authenticationRequest)
 			throws InvalidKeySpecException, NoSuchAlgorithmException {
 //		System.err.println(authenticationRequest.getUserName());
 
